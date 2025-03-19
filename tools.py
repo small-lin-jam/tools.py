@@ -14,6 +14,7 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 '''
 this file is made by Steven Lin Studio
 用前须知：本文件如果要使用turtle画图，请提前加载turtlez库！
+github开源地址：https://github.com/small-lin-jam/tools.py/
 intx：带容错机制的int
 floatx：带容错机制的float
 strx：带容错机制的str
