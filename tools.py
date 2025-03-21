@@ -1,4 +1,4 @@
-import turtle as t
+import math,turtle as t
 '''
 MIT开源许可证（要求在新的软件中包含此许可证）
 The MIT License (MIT)
@@ -19,6 +19,13 @@ intx：带容错机制的int
 floatx：带容错机制的float
 strx：带容错机制的str
 boolx：带容错机制的bool
+dsyah：计算等腰三角形三个角
+    l1：等腰三角形底边
+    l2：等腰三角形的腰
+dsnah：计算三角形三个角
+    l1：三角形底边
+    l2：三角形的左腰
+    l3：三角形的右腰
 dcircle：根据所给圆心画圆
     cx：确定圆心x坐标
     cy：确定圆心y坐标
@@ -45,6 +52,21 @@ ds:根据所给三角形左下角顶点画等边三角形
     l：确定边长（不是三条边的总和）
     h：确定底边方向（默认为正右，数据为0）
     fc：填充颜色（如果不要填充，请输入被覆盖部分的颜色）
+dsy:根据所给三角形左下角顶点画等腰三角形
+    x：确定三角形底边中点x坐标
+    y：确定三角形底边中点y坐标
+    l1：确定底边长
+    l2：确定腰长（不是两腰总和）
+    h：确定底边方向（默认为正右，数据为0）
+    fc：填充颜色（如果不要填充，请输入被覆盖部分的颜色）
+dsn:根据所给三角形左下角顶点画三角形
+    x：确定三角形左下角顶点x坐标
+    y：确定三角形左下角顶点y坐标
+    l1：确定底边长
+    l2：确定左腰长
+    l3：确定右腰长
+    h：确定底边方向（默认为正右，数据为0）
+    fc：填充颜色（如果不要填充，请输入被覆盖部分的颜色）
 '''
 def intx(n):
     try:
@@ -68,28 +90,19 @@ def strx(n):
 def boolx(n):
     n=bool(n)
     return n
-def dcircle(cx=0,cy=0,lenth=200,h=360,fc='black'):
-    print('正在检查cx：')
-    cx=floatx(cx)
-    print('正在检查cy：')
-    cy=floatx(cy)
-    print('正在检查lenth：')
-    lenth=floatx(lenth)
-    print('正在检查h：')
-    h=floatx(h)
-    print('正在检查fc：')
-    fc=strx(fc)
-    print('检查完成，正在画图')
-    t.pu()
-    t.goto(cx,cy)
-    t.seth(-90)
-    t.fd(lenth)
-    t.pd()
-    t.seth(0)
-    t.begin_fill()
-    t.fillcolor(fc)
-    t.circle(lenth,extent=h)
-    t.end_fill()
+def dsyah(l1,l2):
+    if l1<=0 or l2<=0: return None  
+    angle=math.degrees(math.acos((2*l2**2-l1**2)/(2*l2**2)))
+    return angle
+def dsnah(l1,l2,l3):
+    l1,l2,l3=floatx(l1),floatx(l2),floatx(l3)
+    if l1 <=0 or l2<=0 or l3<=0: return None
+    if l1+l2<=l3 or l1+l3<=l2 or l2+l3<=l1:
+        return None,None,None
+    angle_A=math.degrees(math.acos((l2**2+l3**2-l1**2)/(2*l2*l3)))
+    angle_B=math.degrees(math.acos((l1**2+l3**2-l2**2)/(2*l1*l3)))
+    angle_C=180-angle_A-angle_B
+    return angle_A,angle_B,angle_C
 def dmt(x=0,y=0,l1=200,l2=100,h=0,fc='black'):
     print('正在检查x：')
     x=floatx(x)
@@ -157,4 +170,64 @@ def ds(x=0,y=0,l=100,h=0,fc='black'):
     for _ in range(3):
         t.lt(120)
         t.fd(l)
+    t.end_fill() 
+def dsy(x=0,y=0,l1=100,l2=100,h=0,fc='black'):
+    print('正在检查x：')
+    x=floatx(x)
+    print('正在检查y：')
+    y=floatx(y)
+    print('正在检查l1：')
+    l1=floatx(l1)
+    print('正在检查l2：')
+    l2=floatx(l2)
+    print('正在检查h：')
+    h=floatx(h)
+    print('正在检查fc：')
+    fc=strx(fc)
+    print('检查完成，正在画图')
+    angle = dsyah(l1, l2)
+    if angle is None:
+        print("错误：边长需大于0")
+        return
+    t.pu()
+    t.goto(x,y)
+    t.seth(h) 
+    t.pd()
+    t.begin_fill()
+    t.fillcolor(fc)
+    t.fd(l1)
+    t.left(180-angle)
+    t.fd(l2)
+    t.goto(x,y)
+    t.end_fill()
+    t.setheading(h)
+def dsn(x=0,y=0,l1=100,l2=100,l3=100,h=0,fc='black'):
+    print('正在检查x：')
+    x=floatx(x)
+    print('正在检查y：')
+    y=floatx(y)
+    print('正在检查l1：')
+    l1=floatx(l1)
+    print('正在检查l2：')
+    l2=floatx(l2)
+    print('正在检查l3：')
+    l3=floatx(l3)
+    print('正在检查h：')
+    h=floatx(h)
+    print('正在检查fc：')
+    fc=strx(fc)
+    print('检查完成，正在画图')
+    angle_A,angle_B,angle_C=dsnah(l1,l2,l3)
+    t.pu()
+    t.goto(x,y)
+    t.seth(h)
+    t.pd()
+    t.begin_fill()
+    t.fillcolor(fc)
+    t.fd(l1)
+    t.left(180-angle_B)
+    t.fd(l2)
+    t.left(180-angle_C)
+    t.fd(l3)
+    t.left(180-angle_A)
     t.end_fill()
