@@ -19,6 +19,27 @@ intx：带容错机制的int
 floatx：带容错机制的float
 strx：带容错机制的str
 boolx：带容错机制的bool
+sumx：带容错机制的加
+    n1：加数1
+    n2：加数2
+subx：带容错机制的减
+    n1：被减数
+    n2：减数
+mulx：带容错机制的乘
+    n1：乘数1
+    n2：乘数2
+divx：带容错机制的除
+    n1：被除数
+    n2：除数
+powerx：带容错机制的乘方
+    nb：底数
+    ne：指数
+divzx：带容错机制的除（仅保留整数）
+    n1：被除数
+    n2：除数
+divxx：带容错机制的除（仅保留小数）
+    n1：被除数
+    n2：除数
 dsyah：计算等腰三角形三个角
     l1：等腰三角形底边
     l2：等腰三角形的腰
@@ -45,7 +66,6 @@ dl:根据所给线中点画直线
     y：确定中点y坐标
     l：直线长度
     h：确定从直线中点到直线开始点（默认在正下方）的方位（默认-90）
-    
 ds:根据所给三角形左下角顶点画等边三角形
     x：确定三角形左下角顶点x坐标
     y：确定三角形左下角顶点y坐标
@@ -89,6 +109,41 @@ def strx(n):
     return n
 def boolx(n):
     n=bool(n)
+    return n
+def sumx(n1,n2):
+    floatx(n1)
+    floatx(n2)
+    n=n1+n2
+    return n
+def subx(n1,n2):
+    floatx(n1)
+    floatx(n2)
+    n=n1-n2
+    return n
+def mulx(n1,n2):
+    floatx(n1)
+    floatx(n2)
+    n=n1*n2
+    return n
+def divx(n1,n2):
+    floatx(n1)
+    floatx(n2)
+    n=n1/n2
+    return n
+def powerx(nb,ne):
+    floatx(nb)
+    floatx(ne)
+    n=nb**ne
+    return n
+def divzx(n1,n2):
+    floatx(n1)
+    floatx(n2)
+    n=n1//n2
+    return n
+def divxx(n1,n2):
+    floatx(n1)
+    floatx(n2)
+    n=n1%n2
     return n
 def dsyah(l1,l2):
     if l1<=0 or l2<=0: return None  
