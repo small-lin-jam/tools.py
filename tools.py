@@ -34,6 +34,9 @@ divx：带容错机制的除
 powerx：带容错机制的乘方
     nb：底数
     ne：指数
+rootx：带容错机制的开根号
+    rad：被开根数
+    index：根号中的次数
 divzx：带容错机制的除（仅保留整数）
     n1：被除数
     n2：除数
@@ -91,18 +94,26 @@ dsn:根据所给三角形左下角顶点画三角形
 def intx(n):
     try:
         n=int(n)
-    except ValueError as ve:
-        print('这个数不能被格式化为整数，原因：', ve)
+    except ValueError as err:
+        print('这个数不能被格式化为整数，原因：', err)
         n=input('请重新输入：')
-        n=int(n)
+        n=intx(n)
+    except TypeError as err:
+        print('这个数不能被格式化为整数，原因：', err)
+        n=input('请重新输入：')
+        n=intx(n)
     return n
 def floatx(n):
     try:
         n=float(n)
-    except ValueError as ve:
-        print('这个数不能被格式化为浮点数，原因：', ve)
+    except ValueError as err:
+        print('这个数不能被格式化为浮点数，原因：', err)
         n=input('请重新输入：')
-        n=int(n)
+        n=floatx(n)
+    except TypeError as err:
+        print('这个数不能被格式化为浮点数，原因：', err)
+        n=input('请重新输入：')
+        n=floatx(n)
     return n
 def strx(n):
     n=str(n)
@@ -134,6 +145,17 @@ def powerx(nb,ne):
     floatx(nb)
     floatx(ne)
     n=nb**ne
+    return n
+def rootx(rad,index):
+    floatx(rad)
+    floatx(index)
+    try:
+        n=complex(rad)**(1/index)
+    except ValueError as ve:
+        print('这个数不能被开根号，原因：', ve)
+        rad=input('请重新输入被开根数：')
+        index=input('请重新输入根号中的次数：')
+        n=rootx(rad,index)
     return n
 def divzx(n1,n2):
     floatx(n1)
