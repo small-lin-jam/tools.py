@@ -1,5 +1,12 @@
 import math,turtle as t
 '''
+开源许可证法律说明:
+当任何人删除MIT开源许可证时，原作者有权按照违约进行处理，我们不允许任何诋毁原作者的情况发生，也不希望这些代码被恶意改造，请注意辨别
+
+开源说明：
+如果您在别的平台上发现了有人在贩卖本文件，请不要购买。如果想要合作，请联系github上关于tools.py的论坛，我们不会给予钱财，但会在下方留下您的名字
+我们鼓励他人去合法修改本文件，但如果被恶意使用，我们将考虑停止对商业（包括但不限于零售）的支持
+
 MIT开源许可证（要求在新的软件中包含此许可证）
 The MIT License (MIT)
 
@@ -12,9 +19,22 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 '''
 '''
+原作者说明：
 this file is made by Steven Lin Studio
-用前须知：本文件如果要使用turtle画图，请提前加载turtlez库！
+请注意：我们不允许有删除开源许可证的行为发生，一经发现，按违约处理
+
+开发人员名单：
+Steven Lin Studio管理与发布人员（林先生）
+
+用前须知：本文件如果要使用turtle画图，请提前加载turtle库！
 github开源地址：https://github.com/small-lin-jam/tools.py/
+inputx：带容错机制的高级input
+    string：在'请输入'后面的变量名（仅影响用户体验）
+    n：指定格式化模式
+        str、string、1、strx：格式化为字符串
+        int、2、intx：格式化为整数
+        float、3、floatx：格式化为浮点数
+        bool、4、boolx：格式化为布尔值（True或False）
 intx：带容错机制的int
 floatx：带容错机制的float
 strx：带容错机制的str
@@ -91,6 +111,24 @@ dsn:根据所给三角形左下角顶点画三角形
     h：确定底边方向（默认为正右，数据为0）
     fc：填充颜色（如果不要填充，请输入被覆盖部分的颜色）
 '''
+#输入/输出处理
+def inputx(string='数据',n='str'):
+    strx(n)
+    strx(string)
+    string=format('请输入'+string+':')
+    a=input(string)
+    if n=='str' or n=='string' or n=='1' or n=='strx':
+        a=strx(a)
+    elif n=='int' or n=='2' or n=='intx':
+        a=intx(a)
+    elif n=='float' or n=='3' or n=='floatx':
+        a=floatx(a)
+    elif n=='bool' or n=='4' or n=='boolx':
+        a=boolx(a)
+    else:
+        a=strx(a)
+    return a
+#基础数学运算
 def intx(n):
     try:
         n=int(n)
@@ -157,6 +195,7 @@ def rootx(rad,index):
         index=input('请重新输入根号中的次数：')
         n=rootx(rad,index)
     return n
+#高阶计算
 def divzx(n1,n2):
     floatx(n1)
     floatx(n2)
@@ -180,6 +219,7 @@ def dsnah(l1,l2,l3):
     angle_B=math.degrees(math.acos((l1**2+l3**2-l2**2)/(2*l1*l3)))
     angle_C=180-angle_A-angle_B
     return angle_A,angle_B,angle_C
+#turtle画图（需要在外部重新import turtle）
 def dmt(x=0,y=0,l1=200,l2=100,h=0,fc='black'):
     print('正在检查x：')
     x=floatx(x)
