@@ -26,8 +26,18 @@ this file is made by Steven Lin Studio
 开发人员名单：
 Steven Lin Studio管理与发布人员（林先生）
 
-用前须知：本文件如果要使用turtle画图，请提前加载turtle库！
+用前须知：本文件如果要使用turtle画图，请提前导入turtle库！
 github开源地址：https://github.com/small-lin-jam/tools.py/
+rangex：带容错机制、支持浮点数的高级range
+        e：结尾数加步进值
+        s：起始数
+        l：步进值
+cutword：带容错机制的字符串分割（会被分割为每一个字符）
+         cw：要被分割的字符
+         返回列表：(列表名)[(需要的字符位-1)]
+cutnum：带容错机制的数字分割（可以自定义左字符长，如果不自定义，默认为从中间剪开，如果长度为奇数，则左数长+1=右数长）
+        num：要被分割的数
+        l：左数长（none或n或middle或m为从中间剪开，此为默认值）
 inputx：带容错机制的高级input
     string：在'请输入'后面的变量名（仅影响用户体验）
     n：指定格式化模式
@@ -111,24 +121,41 @@ dsn:根据所给三角形左下角顶点画三角形
     h：确定底边方向（默认为正右，数据为0）
     fc：填充颜色（如果不要填充，请输入被覆盖部分的颜色）
 '''
-#输入/输出处理
-def inputx(string='数据',n='str'):
-    strx(n)
-    strx(string)
-    string=format('请输入'+string+':')
-    a=input(string)
-    if n=='str' or n=='string' or n=='1' or n=='strx':
-        a=strx(a)
-    elif n=='int' or n=='2' or n=='intx':
-        a=intx(a)
-    elif n=='float' or n=='3' or n=='floatx':
-        a=floatx(a)
-    elif n=='bool' or n=='4' or n=='boolx':
-        a=boolx(a)
+#基础处理
+def rangex(e=0,s=0,l=1):
+    l=floatx(l)
+    s=floatx(s)
+    e=floatx(e)
+    while l==0:
+        l=floatx(input('步长不能为0，请重新输入！'))
+    while (l>0 and s<e)or(l<0 and s>e):
+        yield s
+        s+=l
+def cutword(cw='none'):
+    cw=strx(cw)
+    sr=[]
+    for string in cw:
+        sr.append(string)
+    return sr
+def cutnum(num='0',l='none'):
+    num=intx(num)
+    strnum=strx(num)
+    strnum=strnum.lstrip('+-')
+    numre=[]
+    if l=='none' or l=='n' or l=='middle' or l=='m':
+        length=len(strnum)
+        while length==0:
+            num=floatx(input('数字长度为0，请重新输入：'))
+            strnum=strx(num).Istrip('+-')
+            length=len(strnum)
+        mid=length//2
+        numre.append(strnum[:mid])
+        numre.append(strnum[mid:])
     else:
-        a=strx(a)
-    return a
-#基础数学运算
+        l=intx(l)
+        numre.append(strnum[:l])
+        numre.append(strnum[l:])
+    return numre
 def intx(n):
     try:
         n=int(n)
@@ -195,6 +222,23 @@ def rootx(rad,index):
         index=input('请重新输入根号中的次数：')
         n=rootx(rad,index)
     return n
+#输入/输出处理
+def inputx(string='数据',n='str'):
+    strx(n)
+    strx(string)
+    string=format('请输入'+string+':')
+    a=input(string)
+    if n=='str' or n=='string' or n=='1' or n=='strx':
+        a=strx(a)
+    elif n=='int' or n=='2' or n=='intx':
+        a=intx(a)
+    elif n=='float' or n=='3' or n=='floatx':
+        a=floatx(a)
+    elif n=='bool' or n=='4' or n=='boolx':
+        a=boolx(a)
+    else:
+        a=strx(a)
+    return a
 #高阶计算
 def divzx(n1,n2):
     floatx(n1)
