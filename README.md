@@ -1,5 +1,12 @@
 # 🛠️ tools.py · 实用Python工具库
 
+[![Forks](https://img.shields.io/github/forks/small-lin-jam/tools.py.svg?style=for-the-badge)](https://github.com/small-lin-jam/SCRT/network/members)
+[![Stargazers](https://img.shields.io/github/stars/small-lin-jam/tools.py.svg?style=for-the-badge)](https://github.com/small-lin-jam/SCRT/stargazers)
+[![Issues](https://img.shields.io/github/issues/small-lin-jam/tools.py.svg?style=for-the-badge)](https://github.com/small-lin-jam/SCRT/issues)
+[![Release](https://img.shields.io/github/v/release/small-lin-jam/tools.py?style=for-the-badge)](https://github.com/small-lin-jam/SCRT/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/small-lin-jam/tools.py/total?style=for-the-badge)](https://github.com/small-lin-jam/SCRT/releases/latest)
+[![License](https://img.shields.io/github/license/small-lin-jam/tools.py?style=for-the-badge&color=9370db)](https://github.com/small-lin-jam/SCRT/blob/main/LICENSE)  
+
 ---
 
 ## 🌟 关于工具库
