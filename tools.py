@@ -637,7 +637,7 @@ the "copyright" line and a pointer to where the full notice is found.
     The tools.py program
     An efficient program for error handling, mathematical operations, and simple graphics rendering, with partial functionality accessible through function calls. Includes usage instructions.
 
-    Copyright (C) 2025 StevenLinStudio
+    Copyright (C) 2024-2026 Shanghai Mumu Personal Studio
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -657,7 +657,7 @@ Also add information on how to contact you by electronic and paper mail.
   If the program does terminal interaction, make it output a short
 notice like this when it starts in an interactive mode:
 
-    The tools.py program  Copyright (C) 2025 StevenLinStudio
+    The tools.py program  Copyright (C) 2024-2026 Shanghai Mumu Personal Studio
     This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
     This is free software, and you are welcome to redistribute it
     under certain conditions; type `show c' for details.
@@ -684,7 +684,7 @@ this file is made by Steven Lin Studio
 请注意：我们不允许有删除开源许可证的行为发生，一经发现，按违约处理
 
 开发人员名单：
-Steven Lin Studio管理与发布人员（林先生）
+Shanghai Mumu Personal Studio管理与发布人员（林先生）
 
 用前须知：本文件如果要使用turtle画图，请提前导入turtle库！
 github开源地址：https://github.com/small-lin-jam/tools.py/
